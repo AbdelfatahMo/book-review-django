@@ -1,0 +1,28 @@
+.flexrow {
+    display: flex;
+    border: 2px;
+}
+
+.flexrow>div {
+    flex: 1;
+}
+
+.infocall {
+
+    border: 2px solid green;
+    border-radius: 25px 25px;
+    background-color: antiquewhite;
+    padding: 20px;
+    margin: 25px 25px 25px 25px;
+}
+
+.infocall_base {
+    display: block;
+    border: 2px solid green;
+    border-radius: 25px 25px;
+    background-color: antiquewhite;
+    width: 20%;
+    padding: 20px;
+    margin: 25px 25px 25px 25px;
+    text-align: center;
+}

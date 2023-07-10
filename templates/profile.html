@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}
+    Bookr
+{% endblock title %}
+{% load profile_tags %}
+{% block content %}
+    <div class='flexrow'>
+        <div class='infocall'>
+            <h2>Profile</h2>
+            <p>
+                Username: {{ request.user.username }}
+                <br>
+                Name : {{ request.user.first_name }} {{ request.user.last_name }}
+                <br>
+                Date join: {{ request.user.date_joined }}
+                <br>
+                Email: {{ request.user.email }}
+                <br>
+                Last login: {{ request.user.last_login }}
+                <br>
+            </p>
+        </div>
+        <div class='infocall'>
+            <h2>Viewed Books</h2>
+            {% book_list request.user.username %}
+            {% comment %} {% for book_id , book_title in request.session.viewed_books %}
+                <a href="{% url "book_details" book_id %}">{{ book_title }}</a>
+                <br>
+            {% empty %}
+                <p>No recently viewed books found.</p>
+            {% endfor %} {% endcomment %}
+            <a href={% url 'read_history' %}>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Download History</button>
+            </a>
+        </div>
+        <div class='infocall'>
+            <h2>Search History</h2>
+            {% for search_in , search in request.session.search_history %}
+                <a href="/book-search?search={{ search }}&search_in={{ search_in }}">{{ search }} ({{ search_in }})</a>
+                <br>
+            {% empty %}
+                <p>No Search History.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% autoescape off %}
+        {{ books_read_plot }}
+    {% endautoescape %}
+{% endblock content %}

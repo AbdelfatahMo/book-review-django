@@ -1,0 +1,6 @@
+{% for book in book_list %}
+    <a href="{% url "book_details" book.id %}">{{ book.title }}</a>
+    <br>
+{% empty %}
+    <p>No recently viewed books found.</p>
+{% endfor %}

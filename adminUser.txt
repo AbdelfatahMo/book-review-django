@@ -1,0 +1,3 @@
+Username: bookradmin
+Email address: bookradmin@example.com
+Password: 01208475042

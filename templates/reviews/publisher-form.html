@@ -1,0 +1,29 @@
+{% comment %} {% extends 'base.html' %}
+{% block title %}
+    {% if publisher %}
+        <h2>Editing Publisher {{ publisher }}</h2>
+    {% else %}
+        <h2>New Publisher</h2>
+    {% endif %}
+{% endblock title %}
+{% block content %}
+    <h2>
+        {% if publisher %}
+            Editing Publisher <em>{{ publisher }}</em>
+        {% else %}
+            New Publisher
+        {% endif %}
+    </h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"
+               name="submit button"
+               value="{% if publisher %}
+                          Save
+                      {% else %}
+                          Create
+                      {% endif %}"
+               class="btn btn-primary">
+    </form>
+{% endblock content %} {% endcomment %}

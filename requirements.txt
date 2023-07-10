@@ -1,0 +1,16 @@
+asgiref
+dj-database-url
+Django
+django-configurations
+django-crispy-forms
+django-debug-toolbar
+djangorestframework
+Pillow
+plotly
+retrying
+six
+pytz
+sqlparse
+XlsxWriter
+gunicorn
+psycopg2

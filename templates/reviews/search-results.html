@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    {% if form.is_valid and search_text %}
+        Search Results for "{{ search_text }}"
+    {% else %}
+        Book Search
+    {% endif %}
+{% endblock title %}
+{% block content %}
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <h1>Search for Books</h1>
+    <!--Form to get text and search with title or contributor-->
+    <div class="flexrow">{% crispy form %}</div>
+    {% comment %} <form>
+        {{ form.as_p }}
+        <input type="submit" name="submit search" value="Search" class="btn btn-primary">
+    </form> {% endcomment %}
+    <!--Check validation and search text and show results-->
+    {% if form.is_valid and search %}
+        <h3>
+            Search Results for <em>{{ search_text }}</em>
+        </h3>
+        <ul class="list-group">
+            {% for book in books %}
+                <li class="list-group-item">
+                    <span class="text-info">Title:</span> <span><a href=' {% url 'book_details' book.pk %}'>{{ book.title }}</a></span>
+                    <br>
+                    <span class="text-info">Contributors:</span>
+                    {% for contributor in book.contributor.all %}
+                        {{ contributor.first_names }} {{ contributor.last_names }}
+                        {% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </li>
+            {% empty %}
+                <li class="list-group-item">No results found.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}

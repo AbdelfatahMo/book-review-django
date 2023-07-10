@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for message in messages %}
+        <p>
+            <em>{{ message.level_tag|title }}:</em> {{ message }}
+        </p>
+    {% endfor %}
+    <form method='POST'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit"
+               name="submit button"
+               value="Submit"
+               class="btn btn-primary">
+    </form>
+{% endblock content %}
